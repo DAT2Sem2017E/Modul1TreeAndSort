@@ -33,7 +33,7 @@ public class Sem2BST {
     }
 
     public List<Address> keys() {
-        throw new UnsupportedOperationException( "Not supported yet." ); //To change body of generated methods, choose Tools | Templates.
+        return keys(root);
     }
 
     private void insert( String key, Address value, Node node ) {
@@ -131,5 +131,14 @@ public class Sem2BST {
             return node;
         }
         return max( node.right );
+    }
+
+    private List<Address> keys( Node node ) {
+        if (node == null) return new ArrayList();
+        ArrayList l = new ArrayList();
+        l.addAll( keys(node.left));
+        l.add( node);
+        l.addAll( keys(node.right));
+        return l;
     }
 }
